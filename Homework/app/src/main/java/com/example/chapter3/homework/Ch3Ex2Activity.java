@@ -1,7 +1,10 @@
 package com.example.chapter3.homework;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -137,12 +140,14 @@ public class Ch3Ex2Activity extends AppCompatActivity {
         animator1.setRepeatMode(ObjectAnimator.REVERSE);
 
         // TODO ex2-1：在这里实现另一个 ObjectAnimator，对 target 控件的大小进行缩放，从 1 到 2 循环
-
+         Animator animator2 = AnimatorInflater.loadAnimator(this,R.animator.scale);
+            animator2.setTarget(findViewById(R.id.target));
         // TODO ex2-2：在这里实现另一个 ObjectAnimator，对 target 控件的透明度进行修改，从 1 到 0.5f 循环
-
+        Animator animator3 = AnimatorInflater.loadAnimator(this,R.animator.fade);
+            animator3.setTarget(findViewById(R.id.target));
         // TODO ex2-3: 将上面创建的其他 ObjectAnimator 都添加到 AnimatorSet 中
         animatorSet = new AnimatorSet();
-        animatorSet.playTogether(animator1);
+        animatorSet.playTogether(animator1,animator2,animator3);
         animatorSet.start();
     }
 }
